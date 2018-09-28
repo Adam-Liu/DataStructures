@@ -1,0 +1,26 @@
+public class Stackv2 {
+    Node top;
+    
+    public void push(int p) {
+        Node n = new Node(p);
+        n.setNext(top);
+        top = n;
+    }
+    
+    /**
+     * Integer is a java wrapper class
+     */
+    public Integer peek() {
+        if (top == null) return null;
+        return top.get();
+    }
+    
+    public Integer pop() {
+        if (top == null) return null;
+        Node oldtop = top;
+        top = top.getNext();
+        oldtop.setNext(null);
+        return oldtop.get();
+    }
+    
+}
