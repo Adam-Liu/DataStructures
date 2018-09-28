@@ -1,0 +1,68 @@
+import java.io.*;
+import java.util.Scanner;
+public class InfiniteAdder{
+    public static void main(String [] args) throws Exception{
+        Scanner scan1 = new Scanner(new BufferedReader(new FileReader("num1.txt")));
+        Digit head1 = new Digit(scan1.nextInt());
+        Digit curr = head1;
+        Digit prev = head1;
+        while(scan1.hasNextInt()) {
+            curr.setNext(new Digit(scan1.nextInt()));
+            curr = curr.getNext();
+        }
+        curr = head1;
+        int a = 0;
+        while(curr != null) {
+            a = curr.getDigit() + (a * 10);
+            prev = curr;
+            curr = curr.getNext();
+        }
+        Scanner scan2 = new Scanner(new BufferedReader(new FileReader("num2.txt")));
+        Digit head2 = new Digit(scan2.nextInt());
+        Digit curr2 = head2;
+        Digit prev2 = head2;
+        while(scan2.hasNextInt()) {
+            curr2.setNext(new Digit(scan2.nextInt()));
+            curr2 = curr2.getNext();
+        }
+        curr2 = head2;
+        int b = 0;
+        while(curr2 != null) {
+            b = curr2.getDigit() + (b * 10);
+            prev2 = curr2;
+            curr2 = curr2.getNext();
+        }
+        System.out.println(a + b);
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+//Changed Digit class to go with it:
+
+public class Digit {
+   int digit;
+   Digit next;
+   Digit prev;
+    public Digit(int d) {
+       digit = d;
+   }
+    public int getDigit() {
+        return digit;
+   }
+    public void setDigit(int d) {
+        digit = d;
+   }
+    public Digit getNext() {
+        return next;
+   }
+    public void setNext(Digit d) {
+        next = d;
+   }
+    public Digit getPrev() {
+        return prev;
+   }
+    public void setPrev(Digit d) {
+        prev = d;
+   }
+}
